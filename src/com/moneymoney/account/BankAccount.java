@@ -1,5 +1,7 @@
 package com.moneymoney.account;
 
+import org.apache.log4j.Logger;
+
 import com.moneymoney.exception.InsufficientFundsException;
 import com.moneymoney.exception.InvalidInputException;
 
@@ -12,7 +14,7 @@ import com.moneymoney.exception.InvalidInputException;
  *and withdraw and deposit respectively.
  */
 public abstract class BankAccount {
-	
+	private Logger logger = Logger.getLogger(SavingsAccount.class.getName()); 
 	private final int accountNumber;
 	private double accountBalance;
 	private String accountHolderName;
@@ -71,6 +73,7 @@ public abstract class BankAccount {
 	 */
 	public void deposit(double amount) {
 		accountBalance += amount;
+		logger.info("Amount Deposited");
 	}
 
 	public abstract void withdraw(double amount) throws InsufficientFundsException, InvalidInputException;
